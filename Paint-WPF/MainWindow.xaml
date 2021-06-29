@@ -1,0 +1,94 @@
+﻿<Window x:Class="Paint_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Paint_WPF"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Height="450" Width="1038">
+    <Grid Background="{StaticResource MaterialDesignBody}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="5,5,5,5" MinHeight="70" Background="Gray">
+            <StackPanel Margin="5,5">
+                <Button x:Name="Board_Clear_btn" Width="90" Height="30" Content="Очистить" Click="Board_Clear_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="{StaticResource MaterialDesignShadowBrush}" FontSize="12" />
+                <Button x:Name="Board_Fill_btn" Width="90" Height="30" Margin="5,10,5,5" Content="Фон" Click="Board_Fill_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="{StaticResource MaterialDesignShadowBrush}" FontSize="12" />
+            </StackPanel>
+            <Separator Width="1"/>
+            <StackPanel Width="220">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="Pencil_btn" Width="30" Height="30" Margin="15,5,5,5" Click="Pencil_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" materialDesign:ButtonProgressAssist.IndicatorBackground="Black" ToolTip="Карандаш">
+                        <materialDesign:PackIcon Kind="Pencil" />
+                    </Button>
+                    <Button x:Name="Eraser_btn" Width="30" Height="30" Margin="5" Click="Eraser_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Ластик">
+                        <materialDesign:PackIcon Kind="Eraser" />
+                    </Button>
+                    <Button x:Name="Brush_btn" Width="30" Height="30" Margin="5" Click="Brush_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Перо">
+                        <materialDesign:PackIcon Kind="FountainPen" />
+                    </Button>
+                    <Button x:Name="Select_btn" Width="30" Height="30" Margin="5" Click="Select_btn_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Выделение">
+                        <materialDesign:PackIcon Kind="Select" />
+                    </Button>
+                    <Button x:Name="Back_btn" Width="30" Height="30" Margin="5" Click="Back_btn_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Отменить последнее действие">
+                        <materialDesign:PackIcon Kind="KeyboardBackspace" />
+                    </Button>
+                </StackPanel>
+                <Separator />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="Cube_bnt" Width="30" Height="30" Margin="15,5,5,5" Click="Cube_bnt_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Прямоугольник">
+                        <materialDesign:PackIcon Kind="RectangleOutline" />
+                    </Button>
+                    <Button x:Name="Ellipse_bnt" Width="30" Height="30" Margin="5" Click="Ellipse_bnt_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Овал">
+                        <materialDesign:PackIcon Kind="EllipseOutline" />
+                    </Button>
+                    <Button x:Name="Line_bnt" Width="30" Height="30"  Margin="5" Click="Line_bnt_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Линия">
+                        <materialDesign:PackIcon Kind="VectorLine" />
+                    </Button>
+                    <Button x:Name="Polygon_bnt" Width="30" Height="30"  Margin="5" Click="Polygon_bnt_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Полигон">
+                        <materialDesign:PackIcon Kind="VectorPolygon" />
+                    </Button>
+                    <Button x:Name="Polyline_bnt" Width="30" Height="30"  Margin="5" Click="Polyline_bnt_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Полилиния">
+                        <materialDesign:PackIcon Kind="VectorPolyline" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="5,0,5,0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Толщина:" Margin="0,5,0,0" Style="{StaticResource MaterialDesignButtonTextBlock}" FontSize="12"/>
+                    <TextBox x:Name="TextBox_Thickness" Width="25" Height="22" Margin="73,0,0,0" TextAlignment="Center"  VerticalAlignment="Top" DockPanel.Dock="Bottom" Text="5" TextChanged="TextBox_Thickness_TextChanged" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Прозрачность холста:" Margin="0,5,0,5" Style="{StaticResource MaterialDesignButtonTextBlock}" FontSize="12"/>
+                    <TextBox x:Name="CopacityValue" Width="25" Height="22" Margin="3,0,0,0" TextAlignment="Center"  VerticalAlignment="Top" DockPanel.Dock="Bottom" Text="1" TextChanged="TextBox_Thickness_TextChanged" />
+                </StackPanel>
+                <Button x:Name="Transparency" Height="28" Content="Установить" Click="Transparency_Click" Margin="0,2,0,0" FontSize="12" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="{StaticResource MaterialDesignShadowBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Ширина:" Height="19" Margin="0,5,0,0" Style="{StaticResource MaterialDesignButtonTextBlock}" FontSize="12"/>
+                    <TextBox x:Name="TextBox_Width" Margin="8,0,0,0" Width="25" Height="22" TextAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Bottom" Text="800"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Высота:" Height="19" Margin="0,3,0,0" Style="{StaticResource MaterialDesignButtonTextBlock}" FontSize="12"/>
+                    <TextBox x:Name="TextBox_Height" Margin="15,0,0,0" Width="25" Height="22" TextAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Bottom" Text="600"/>
+                </StackPanel>
+                <Button x:Name="WandHBoard" Height="28" Content="Установить" Click="WandHBoard_Click" Margin="0,4,0,0" FontSize="12" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="{StaticResource MaterialDesignShadowBrush}"/>
+            </StackPanel>
+            <StackPanel Margin="5,5,5,8" Width="180" Background="{StaticResource MaterialDesignBody}">
+                <Slider x:Name="sld_RedColor" Background="Red" Minimum="0" Maximum="255" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="170" Height="17" ValueChanged="sld_Color_ValueChanged"/>
+                <Slider x:Name="sld_GreenColor" Background="Green" Minimum="0" Maximum="255" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="170" Height="17" ValueChanged="sld_Color_ValueChanged"/>
+                <Slider x:Name="sld_BlueColor" Background="Blue" Minimum="0" Maximum="255" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="170" Height="17" ValueChanged="sld_Color_ValueChanged"/>
+            </StackPanel>
+            <Label x:Name="lbl1" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="20" Height="71"/>
+            <StackPanel Orientation="Vertical" Margin="15,5">
+                <Button x:Name="SaveAs" Width="130" Height="30" Content="Сохранить файл" Click="SaveAs_Click" FontSize="12" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="{StaticResource MaterialDesignShadowBrush}"/>
+                <Button x:Name="OpenAs" Width="130" Height="30" Margin="0,10,0,0" Content="Открыть файл" Click="OpenAs_Click" FontSize="12" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="{StaticResource MaterialDesignShadowBrush}"/>
+            </StackPanel>
+        </StackPanel>
+        <Border Margin="5,89,5,5">
+            <InkCanvas x:Name="MyInkCanvas" MaxWidth="1920" MaxHeight="1080" MouseWheel="MyInkCanvas_MouseWheel" PreviewMouseLeftButtonDown="MyInkCanvas_PreviewMouseLeftButtonDown" PreviewMouseMove="MyInkCanvas_PreviewMouseMove" MouseLeftButtonUp="MyInkCanvas_MouseLeftButtonUp"/>
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="8" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+        </Border>
+    </Grid>
+</Window>
