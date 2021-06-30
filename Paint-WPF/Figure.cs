@@ -56,5 +56,29 @@ namespace Paint_WPF
                     break;
             }
         }
+        public static void RenderingShapes(string Shapes, Point MovePoint, Point MousePoint)
+        {
+            switch (Shapes)
+            {
+                case "Линия":
+                    Transfer.mode = "";
+                    Lines.RenderingLine(MovePoint);
+                    break;
+                case "Прямоугольник":
+                    CubeAndEllipse.RenderingShape(MovePoint, MousePoint);
+                    break;
+                case "Овал":
+                    CubeAndEllipse.RenderingShape(MovePoint, MousePoint);
+                    break;
+                case "Полигон":
+                    PolygonD.RenderingPolygon(MovePoint);
+                    break;
+                case "Полилиния":
+                    PolyLineD.RenderingPolyLine(MovePoint);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
